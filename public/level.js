@@ -16,11 +16,13 @@ class Level {
         }
 
         // Start the game
-        this.rocks.push(new Rock())
-        this.rocks.push(new Rock())
-        this.rocks.push(new Rock())
-        this.rocks.push(new Rock())
-        this.rocks.forEach(rock => rock.spawn(canvas))
+        const rockCount = Math.floor(4 + difficulty/3)        
+        for (let i = 0; i < rockCount; i++) {
+            this.rocks.push(new Rock())
+        }
+        const startingVelocity = 3 + difficulty*0.3
+
+        this.rocks.forEach(rock => rock.spawn(canvas, undefined, undefined, undefined, startingVelocity))
         this.turret.reset(canvas)
     }
 
