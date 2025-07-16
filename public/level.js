@@ -41,7 +41,7 @@ class Level {
             for(const rock of this.rocks) {
                 if (rock.contains(bullet.x, bullet.y)) {
                     rock.pop(canvas, this.rocks)
-                    this.bullets.splice(this.bullets.indexOf(bullet))
+                    this.bullets.splice(this.bullets.indexOf(bullet) , 1)
                     break;
                 }
             }
