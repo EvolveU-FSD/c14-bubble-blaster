@@ -22,7 +22,8 @@ class Rock {
         }
 
         velocity = velocity || 3
-        const velocityAngle = Math.random() * 2.0 * Math.PI
+        const angleFromCenter = Math.atan2(this.y-canvas.height/2, this.x-canvas.width/2)
+        const velocityAngle = angleFromCenter + (Math.random()-0.5) * Math.PI
         this.vx = velocity * Math.cos(velocityAngle)
         this.vy = velocity * Math.sin(velocityAngle)
     }
