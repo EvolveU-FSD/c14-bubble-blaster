@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bubble-blast-cache-v2';
+const CACHE_NAME = 'bubble-blast-cache-v3';
 const urlsToCache = [
   '/',
   '/index.html',
