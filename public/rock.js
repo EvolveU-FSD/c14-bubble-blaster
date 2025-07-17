@@ -39,7 +39,7 @@ class Rock {
         if (this.radius > 20) {            
             for (let i=0; i<2; i++) {
                 const rock = new Rock()
-                rock.spawn(canvas, this.radius-10, this.x, this.y, this.velocity+1)
+                rock.spawn(canvas, this.radius-10, this.x, this.y, this.velocity+0.5)
                 rocks.push(rock)
             }
         }
