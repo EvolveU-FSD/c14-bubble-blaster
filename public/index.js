@@ -63,5 +63,5 @@ function crash() {
     }
 }
 
-
+gotoTitleScreen()
 gameLoop()
