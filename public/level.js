@@ -56,9 +56,17 @@ class Level {
         context.clearRect(0, 0, canvas.width, canvas.height);
 
         // Draw
-        this.turret.draw(context)
-        this.rocks.forEach((rock) => rock.draw(context))
-        this.bullets.forEach((bullet) => bullet.draw(context))
+        this.turret.draw(context, this.turret)
+        this.rocks.forEach((rock) => rock.draw(context, this.turret))
+        this.bullets.forEach((bullet) => bullet.draw(context, this.turret))
+
+        console.log("Drawing boundaries with turret", 
+            this.turret,
+            "at",
+            (canvas.width/2)-this.turret.x, (canvas.height/2)-this.turret.y, canvas.width, canvas.height
+        )
+
+        context.strokeRect((canvas.width/2)-this.turret.x, (canvas.height/2)-this.turret.y, canvas.width, canvas.height)
 
         context.font = '20px monospace'
         context.textAlign = 'center'
@@ -71,7 +79,13 @@ class Level {
             this.bullets.shift()
         }
         const bullet = new Bullet() 
-        bullet.spawn(canvas, e.x, e.y)
+        bullet.spawn(canvas, 
+            (e.x-canvas.width/2)+this.turret.x, 
+            (e.y-canvas.height/2)+this.turret.y, 
+            undefined, 
+            this.turret.x, 
+            this.turret.y
+        )
         this.bullets.push(bullet)
     }
 }

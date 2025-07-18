@@ -7,13 +7,15 @@ class Bullet {
     vy = 5
     radius = 2
     
-    spawn(canvas, aimX, aimY, velocity) {
+    spawn(canvas, aimX, aimY, velocity, fromX, fromY) {
+        this.x = fromX || canvas.width/2
+        this.y = fromY || canvas.height/2
         velocity = velocity || 10
-        aimX = aimX - (canvas.width/2)
-        aimY = aimY - (canvas.height/2)
+
+        aimX = aimX - this.x
+        aimY = aimY - this.y
+
         const shootAngle = Math.atan2(aimY, aimX)
-        this.x = canvas.width/2
-        this.y = canvas.height/2
         this.vx = Math.cos(shootAngle)*velocity
         this.vy = Math.sin(shootAngle)*velocity
     }
@@ -43,9 +45,15 @@ class Bullet {
         }
     }
 
-    draw(context) {
+    draw(context, cameraLocation) {
+        const screenCenterX = canvas.width/2
+        const screenCenterY = canvas.height/2
+
+        const cameraX = cameraLocation?.x || screenCenterX
+        const cameraY = cameraLocation?.y || screenCenterY
+
         context.beginPath();
-        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        context.arc(this.x-cameraX+screenCenterX, this.y-cameraY+screenCenterY, this.radius, 0, Math.PI * 2);
         context.fillStyle = '#ffffff'
         context.fill();
         context.closePath();

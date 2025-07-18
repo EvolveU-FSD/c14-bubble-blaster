@@ -66,9 +66,15 @@ class Rock {
         }
     }
 
-    draw(context) {
+    draw(context, cameraLocation) {
+        const screenCenterX = canvas.width/2
+        const screenCenterY = canvas.height/2
+
+        const cameraX = cameraLocation?.x || screenCenterX
+        const cameraY = cameraLocation?.y || screenCenterY
+        
         context.beginPath();
-        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        context.arc(this.x-cameraX+screenCenterX, this.y-cameraY+screenCenterY, this.radius, 0, Math.PI * 2);
         // context.fillStyle = 'tomato';
         // context.fill();
         context.lineWidth = 3;
